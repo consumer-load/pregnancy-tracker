@@ -3,13 +3,7 @@ import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
 import NutritionHub from './components/NutritionHub';
 import AIAssistant from './components/AIAssistant';
-import ContractionTimer from './components/ContractionTimer';
-import KickCounter from './components/KickCounter';
-import WeightTracker from './components/WeightTracker';
-import AppointmentsLog from './components/AppointmentsLog';
-import HospitalBag from './components/HospitalBag';
-import BabyNames from './components/BabyNames';
-import RedFlagsGuide from './components/RedFlagsGuide';
+import ToolsHub from './components/ToolsHub';
 import SetupModal from './components/SetupModal';
 import { calculatePregnancy } from './utils/pregnancyCalculator';
 import { getStoredSettings, saveStoredSettings } from './utils/storage';
@@ -19,6 +13,14 @@ export default function App() {
   const [settings, setSettings] = useState(getStoredSettings());
   const [activeTab, setActiveTab] = useState('dashboard');
   const [showSettingsModal, setShowSettingsModal] = useState(false);
+  const [language, setLanguage] = useState(() => {
+    return localStorage.getItem('bloom_lang') || 'en';
+  });
+
+  const handleSetLanguage = (lang) => {
+    setLanguage(lang);
+    localStorage.setItem('bloom_lang', lang);
+  };
 
   // Calculate pregnancy statistics whenever settings change
   const pregnancyInfo = calculatePregnancy(settings);
@@ -30,12 +32,14 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#fdf8f9] text-slate-800 flex flex-col font-sans selection:bg-rose-100 selection:text-rose-900">
-      {/* Top Navigation */}
+      {/* Top Easy Navigation */}
       <Navbar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         pregnancyInfo={pregnancyInfo}
         onOpenSettings={() => setShowSettingsModal(true)}
+        language={language}
+        setLanguage={handleSetLanguage}
       />
 
       {/* Main Content Area */}
@@ -46,6 +50,7 @@ export default function App() {
             settings={settings}
             onNavigateTab={setActiveTab}
             onOpenSettings={() => setShowSettingsModal(true)}
+            language={language}
           />
         )}
 
@@ -65,29 +70,12 @@ export default function App() {
           />
         )}
 
-        {activeTab === 'contractions' && <ContractionTimer />}
-
-        {activeTab === 'kicks' && <KickCounter />}
-
-        {activeTab === 'weight' && (
-          <WeightTracker
-            currentWeek={pregnancyInfo.currentWeek}
-            settings={settings}
-          />
-        )}
-
-        {activeTab === 'appointments' && (
-          <AppointmentsLog
+        {activeTab === 'tools' && (
+          <ToolsHub
             pregnancyInfo={pregnancyInfo}
             settings={settings}
           />
         )}
-
-        {activeTab === 'hospital-bag' && <HospitalBag />}
-
-        {activeTab === 'names' && <BabyNames />}
-
-        {activeTab === 'red-flags' && <RedFlagsGuide />}
       </main>
 
       {/* Date & Settings Configuration Modal */}
@@ -113,18 +101,18 @@ export default function App() {
             <div className="flex items-center space-x-4 text-xs">
               <span className="flex items-center space-x-1 text-slate-600 font-medium">
                 <Cloud className="w-3.5 h-3.5 text-amber-500" />
-                <span>Cloudflare Pages Ready</span>
+                <span>Cloudflare Pages Live</span>
               </span>
               <span>•</span>
               <span className="flex items-center space-x-1 text-slate-600 font-medium">
                 <GitBranch className="w-3.5 h-3.5 text-slate-800" />
-                <span>GitHub Version Controlled</span>
+                <span>GitHub Synced</span>
               </span>
             </div>
           </div>
 
           <div className="text-[11px] text-slate-400 text-center sm:text-left leading-relaxed pt-2 border-t border-slate-100">
-            <strong>Medical Disclaimer:</strong> BloomMom AI is designed for informational, educational, and tracking purposes only. It is not a substitute for professional medical diagnosis, advice, or treatment from your obstetrician, gynecologist, or healthcare provider. In an emergency or severe symptoms, please immediately visit the nearest Emergency Room or Labor & Delivery triage unit.
+            <strong>Medical Disclaimer:</strong> BloomMom AI is designed for informational, educational, and tracking purposes only. Always consult your personal OB-GYN or healthcare provider for individual medical care. In an emergency, please visit the nearest hospital triage or emergency room immediately.
           </div>
         </div>
       </footer>
