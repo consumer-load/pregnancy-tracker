@@ -1,0 +1,338 @@
+/**
+ * Comprehensive Pregnancy Nutrition, Diet Plans, and Food Safety Guide
+ */
+
+export const FOOD_SAFETY_CATEGORIES = {
+  AVOID: "avoid",
+  CAUTION: "caution",
+  BENEFICIAL: "beneficial",
+};
+
+export const FOODS_SAFETY_DATABASE = [
+  // STRICTLY AVOID
+  {
+    name: "Raw / Undercooked Meat & Poultry",
+    category: FOOD_SAFETY_CATEGORIES.AVOID,
+    badge: "Strictly Avoid",
+    reason: "Risk of Toxoplasma parasite, Salmonella, and E. coli which can cause severe fetal complications or miscarriage.",
+    safeAlternatives: "Cook all meats until steaming hot (internal temp 165°F / 74°C). Well-done steaks only.",
+    group: "Meats & Protein",
+  },
+  {
+    name: "High-Mercury Fish (Shark, Swordfish, King Mackerel, Tilefish)",
+    category: FOOD_SAFETY_CATEGORIES.AVOID,
+    badge: "Strictly Avoid",
+    reason: "High methylmercury levels accumulate in maternal bloodstream and cause severe developmental damage to baby's brain and nervous system.",
+    safeAlternatives: "Low-mercury wild salmon, light canned tuna (limit to 6oz/week), sardines, tilapia, cod, shrimp.",
+    group: "Seafood",
+  },
+  {
+    name: "Unpasteurized / Raw Milk & Soft Cheeses (Brie, Camembert, Roquefort, Feta)",
+    category: FOOD_SAFETY_CATEGORIES.AVOID,
+    badge: "Strictly Avoid",
+    reason: "Risk of Listeria monocytogenes bacteria, which can cross the placenta causing miscarriage, stillbirth, or severe neonatal illness.",
+    safeAlternatives: "Pasteurized hard cheeses (cheddar, parmesan, gouda, mozzarella) or cheeses clearly labeled 'Made with Pasteurized Milk'.",
+    group: "Dairy",
+  },
+  {
+    name: "Cold Deli Meats, Hot Dogs & Pâté",
+    category: FOOD_SAFETY_CATEGORIES.AVOID,
+    badge: "Strictly Avoid",
+    reason: "Listeria bacteria can survive refrigeration on processed meats.",
+    safeAlternatives: "Heat deli meats until steaming hot (165°F) before eating, or choose freshly cooked roasted chicken/turkey.",
+    group: "Meats & Protein",
+  },
+  {
+    name: "Raw / Undercooked Eggs (Runny yolk, Homemade Mayo, Caesar dressing, Tiramisu)",
+    category: FOOD_SAFETY_CATEGORIES.AVOID,
+    badge: "Strictly Avoid",
+    reason: "Risk of Salmonella food poisoning resulting in severe dehydration, vomiting, and high maternal fever.",
+    safeAlternatives: "Hard-boiled eggs, fully cooked scrambled eggs, store-bought pasteurized dressings and mayonnaise.",
+    group: "Dairy & Eggs",
+  },
+  {
+    name: "Raw Shellfish & Raw Sushi / Sashimi",
+    category: FOOD_SAFETY_CATEGORIES.AVOID,
+    badge: "Strictly Avoid",
+    reason: "Vibrio bacteria, norovirus, and parasites.",
+    safeAlternatives: "Cooked sushi rolls (California roll with imitation crab, tempura rolls, avocado roll, cooked eel roll).",
+    group: "Seafood",
+  },
+  {
+    name: "Alcohol (Wine, Beer, Spirits)",
+    category: FOOD_SAFETY_CATEGORIES.AVOID,
+    badge: "Strictly Avoid",
+    reason: "There is no known safe amount of alcohol during pregnancy. Causes Fetal Alcohol Spectrum Disorders (FASD), facial dysmorphism, and mental impairment.",
+    safeAlternatives: "Mocktails with sparkling water, fresh lime, mint, ginger beer, or 100% tart cherry juice.",
+    group: "Beverages",
+  },
+  {
+    name: "Raw Sprouts (Alfalfa, Clover, Radish, Mung bean)",
+    category: FOOD_SAFETY_CATEGORIES.AVOID,
+    badge: "Strictly Avoid",
+    reason: "Sprouts grow in warm, humid conditions that are breeding grounds for Salmonella and E. coli that cannot be washed off.",
+    safeAlternatives: "Cook sprouts thoroughly before consumption in stir-fries, or use crisp cooked veggies.",
+    group: "Produce",
+  },
+  {
+    name: "Unwashed Produce & Bagged Salad",
+    category: FOOD_SAFETY_CATEGORIES.AVOID,
+    badge: "Strictly Avoid",
+    reason: "Soil residue can carry Toxoplasma gondii and Listeria.",
+    safeAlternatives: "Wash all fruits, vegetables, and salad greens thoroughly under running water, scrub firm produce with a brush.",
+    group: "Produce",
+  },
+  {
+    name: "Unpasteurized Fresh Juices & Apple Cider",
+    category: FOOD_SAFETY_CATEGORIES.AVOID,
+    badge: "Strictly Avoid",
+    reason: "Fresh unpasteurized pressings may contain harmful E. coli.",
+    safeAlternatives: "Commercially pasteurized juices or fresh juice made at home with washed fruits immediately before drinking.",
+    group: "Beverages",
+  },
+
+  // CONSUME WITH CAUTION
+  {
+    name: "Caffeine (Coffee, Energy Drinks, Black Tea)",
+    category: FOOD_SAFETY_CATEGORIES.CAUTION,
+    badge: "Limit strictly",
+    reason: "Caffeine crosses the placenta. High intake (> 200mg/day) is linked to low birth weight and increased miscarriage risk.",
+    safeAlternatives: "Limit intake to max 200 mg per day (~1 standard 12 oz brewed coffee). Switch to decaf, matcha, or herbal teas.",
+    group: "Beverages",
+  },
+  {
+    name: "Canned Albacore / White Tuna",
+    category: FOOD_SAFETY_CATEGORIES.CAUTION,
+    badge: "Limit strictly",
+    reason: "Contains 3x more mercury than canned light chunk tuna.",
+    safeAlternatives: "Eat no more than 6 oz (1 can) of albacore tuna per week. Light tuna or canned salmon is preferable.",
+    group: "Seafood",
+  },
+  {
+    name: "Herbal Teas (Licorice root, Pennyroyal, Black Cohosh)",
+    category: FOOD_SAFETY_CATEGORIES.CAUTION,
+    badge: "Check Ingredients",
+    reason: "Certain medicinal herbs can stimulate uterine contractions or affect hormonal balance.",
+    safeAlternatives: "Safe herbal teas: Ginger, peppermint, lemon balm, rooibos, and red raspberry leaf (in late 3rd trimester only).",
+    group: "Beverages",
+  },
+  {
+    name: "Artificial Sweeteners (Saccharin)",
+    category: FOOD_SAFETY_CATEGORIES.CAUTION,
+    badge: "Moderate Use",
+    reason: "Saccharin crosses the placenta and can remain in fetal tissues.",
+    safeAlternatives: "Stevia, sucralose (Splenda), or moderate natural sweeteners like raw honey, maple syrup, or dates.",
+    group: "Pantry",
+  },
+  {
+    name: "Sodium & Ultra-Processed Snacks",
+    category: FOOD_SAFETY_CATEGORIES.CAUTION,
+    badge: "Moderate Use",
+    reason: "High sodium intake exacerbates fluid retention, edema, and high blood pressure.",
+    safeAlternatives: "Air-popped popcorn, roasted chickpeas, nuts, seeds, fresh cut vegetables with guacamole or hummus.",
+    group: "Snacks",
+  },
+
+  // SUPERFOODS (HIGHLY BENEFICIAL)
+  {
+    name: "Pastured Whole Eggs",
+    category: FOOD_SAFETY_CATEGORIES.BENEFICIAL,
+    badge: "Superfood",
+    reason: "Packed with Choline (critical for fetal brain & neural tube), high-quality complete protein, lutein, and vitamin D.",
+    safeAlternatives: "Eat 2 thoroughly cooked eggs daily (boiled, scrambled, omelet).",
+    group: "Dairy & Eggs",
+  },
+  {
+    name: "Wild Salmon & Sardines",
+    category: FOOD_SAFETY_CATEGORIES.BENEFICIAL,
+    badge: "Superfood",
+    reason: "Rich in DHA & EPA Omega-3 fatty acids essential for baby's brain and retina, plus high vitamin D and selenium.",
+    safeAlternatives: "Enjoy 2 to 3 servings (8-12 oz total) per week, baked or pan-seared.",
+    group: "Seafood",
+  },
+  {
+    name: "Avocados",
+    category: FOOD_SAFETY_CATEGORIES.BENEFICIAL,
+    badge: "Superfood",
+    reason: "Loaded with monounsaturated healthy fats, folate, potassium (prevents leg cramps), and vitamin B6 (relieves nausea).",
+    safeAlternatives: "Avocado toast, blended into fruit smoothies, or diced in salads.",
+    group: "Produce",
+  },
+  {
+    name: "Greek Yogurt & Kefir",
+    category: FOOD_SAFETY_CATEGORIES.BENEFICIAL,
+    badge: "Superfood",
+    reason: "Contains twice the protein of regular yogurt, abundant bioavailable calcium, and probiotics for healthy gut & vaginal flora.",
+    safeAlternatives: "Choose plain full-fat or low-fat greek yogurt, sweetened with fresh berries and a drizzle of honey.",
+    group: "Dairy",
+  },
+  {
+    name: "Lentils, Chickpeas & Black Beans",
+    category: FOOD_SAFETY_CATEGORIES.BENEFICIAL,
+    badge: "Superfood",
+    reason: "Powerhouse of plant protein, dietary fiber (stops constipation), non-heme iron, and high natural folate.",
+    safeAlternatives: "Lentil soups, hummus dip, black bean tacos, and chickpea salads.",
+    group: "Produce",
+  },
+  {
+    name: "Dark Leafy Greens (Spinach, Kale, Swiss Chard)",
+    category: FOOD_SAFETY_CATEGORIES.BENEFICIAL,
+    badge: "Superfood",
+    reason: "High in Folate, Vitamins A, C, K, iron, and calcium. Helps expand maternal blood supply smoothly.",
+    safeAlternatives: "Sautéed in olive oil with garlic, or blended into morning smoothies.",
+    group: "Produce",
+  },
+  {
+    name: "Sweet Potatoes",
+    category: FOOD_SAFETY_CATEGORIES.BENEFICIAL,
+    badge: "Superfood",
+    reason: "Rich in beta-carotene (plant-based precursor to Vitamin A) essential for fetal cell growth and vision without risk of vitamin A toxicity.",
+    safeAlternatives: "Baked sweet potato with butter and cinnamon, or sweet potato wedges.",
+    group: "Produce",
+  },
+  {
+    name: "Medjool Dates (Weeks 36+)",
+    category: FOOD_SAFETY_CATEGORIES.BENEFICIAL,
+    badge: "Late Pregnancy Superfood",
+    reason: "Clinical studies show eating 6 dates daily from week 36 softens the cervix, shortens first-stage labor, and reduces induction rates.",
+    safeAlternatives: "Eat 4-6 dates daily plain, stuffed with peanut butter, or blended into date smoothies.",
+    group: "Produce",
+  },
+];
+
+export const TRIMESTER_MEAL_PLANS = {
+  1: {
+    trimester: 1,
+    title: "1st Trimester: Foundation & Nausea Relief",
+    calorieBonus: "0 extra calories needed (Prioritize nutrient density and tolerance)",
+    focus: "Folic Acid / Folate, Vitamin B6, Gentle Digestibility, Hydration",
+    meals: {
+      breakfast: "Whole grain toast with mashed avocado, 1 hard-boiled egg, and a cup of fresh lemon-ginger infusion tea.",
+      midMorningSnack: "Small handful of raw almonds and an organic green apple or a slice of ginger bread.",
+      lunch: "Quinoa bowl with steamed spinach, roasted sweet potato cubes, grilled chicken breast or chickpeas, with tahini dressing.",
+      afternoonSnack: "Plain Greek yogurt with fresh blueberries and a tablespoon of ground flaxseed.",
+      dinner: "Mild baked wild salmon with steamed carrots and brown rice or baked potato (easy on sensitive stomachs).",
+      bedtimeBite: "1 glass of warm milk or oat milk with 2 whole wheat crackers to avoid low blood sugar nausea in the morning.",
+    },
+    tips: [
+      "Keep salty crackers by your bedside; eat 2 crackers 15 minutes before swinging your legs out of bed.",
+      "Sip fluids between meals instead of with meals to prevent fullness and nausea.",
+      "If prenatal pills make you nauseous, take them at night with a small bedtime snack.",
+    ],
+  },
+  2: {
+    trimester: 2,
+    title: "2nd Trimester: Growth & Energy Surge",
+    calorieBonus: "+340 nutrient-rich calories per day",
+    focus: "Calcium, Iron, Omega-3 DHA, Protein, Fiber",
+    meals: {
+      breakfast: "Steel-cut oatmeal cooked with milk or fortified almond milk, topped with chia seeds, banana slices, and a dollop of almond butter.",
+      midMorningSnack: "Carrot and bell pepper sticks with 3 tbsp hummus and a hard-boiled egg.",
+      lunch: "Mediterranean lentil soup with a large leafy green salad (spinach, cucumbers, walnuts) dressed with extra virgin olive oil and lemon.",
+      afternoonSnack: "Cottage cheese with sliced peaches or fresh berries, plus a glass of water.",
+      dinner: "Lean beef or turkey stir-fry with broccoli, snap peas, bell peppers, and garlic served over brown basmati rice.",
+      bedtimeBite: "A cup of warm chamomile tea with a small handful of pumpkin seeds (high in magnesium to prevent night cramps).",
+    },
+    tips: [
+      "Pair iron-rich foods (beans, meats, spinach) with vitamin C (bell peppers, oranges) to double iron absorption.",
+      "Avoid drinking coffee, tea, or milk within 1 hour of taking iron supplements because calcium and tannins inhibit iron uptake.",
+      "Stay active with 30 minutes of prenatal walking to support insulin sensitivity.",
+    ],
+  },
+  3: {
+    trimester: 3,
+    title: "3rd Trimester: Stamina, Brain Development & Labor Prep",
+    calorieBonus: "+450 nutrient-rich calories per day",
+    focus: "Omega-3 DHA, Choline, Vitamin K, Dates (36w+), Hydration",
+    meals: {
+      breakfast: "2 scrambled pastured eggs with baby spinach and mushrooms, 1 slice of sprouted sourdough toast with avocado, fresh orange.",
+      midMorningSnack: "3 Medjool dates stuffed with almond butter and a sprinkle of sea salt.",
+      lunch: "Wild salmon salad wrap with romaine lettuce, tomato, diced cucumbers, and Greek yogurt dressing, with a side of lentil soup.",
+      afternoonSnack: "Smoothie made with frozen berries, Greek yogurt, spinach, chia seeds, and coconut water.",
+      dinner: "Baked sweet potato topped with black bean chili, guacamole, and a sprinkle of pasteurized cheddar cheese.",
+      bedtimeBite: "Warm golden turmeric milk (turmeric, milk, dash of cinnamon and honey) with 2 Medjool dates (if 36+ weeks).",
+    },
+    tips: [
+      "Eat 5-6 smaller meals rather than large meals because your growing baby is compressing your stomach and lungs.",
+      "Consume 6 dates daily starting at week 36 for cervical ripening.",
+      "Stay upright for 45-60 minutes after dinner to avoid nocturnal acid reflux.",
+    ],
+  },
+};
+
+export const SYMPTOM_DIET_REMEDIES = [
+  {
+    symptom: "Morning Sickness & Nausea",
+    emoji: "🤢",
+    recommendedFoods: ["Ginger tea or real ginger candies", "Dry crackers & pretzels", "Cold watermelon cubes", "Sour lemon water", "Vitamin B6-rich bananas & potatoes"],
+    foodsToAvoid: ["Greasy, fried foods", "Strong-smelling spices", "Excessive sugar", "Hot, heavy liquids on empty stomach"],
+    clinicalTip: "Never let your stomach get completely empty. Keep glucose levels stable by nibbling small bites every 2 hours.",
+  },
+  {
+    symptom: "Acid Reflux & Heartburn",
+    emoji: "🔥",
+    recommendedFoods: ["Oatmeal with almond milk", "Ripe bananas & melon", "Papaya (contains natural enzyme papain)", "Plain Greek yogurt", "Almonds (alkalizing)"],
+    foodsToAvoid: ["Tomato sauces & ketchup", "Citrus juices on empty stomach", "Chocolate & mints (relaxes LES valve)", "Deep fried foods", "Carbonated soda"],
+    clinicalTip: "Do not lie down for at least 1 hour after eating. Elevate the head of your bed 6 inches.",
+  },
+  {
+    symptom: "Constipation & Bloating",
+    emoji: "💨",
+    recommendedFoods: ["Prunes or 100% prune juice", "Chia seeds soaked in water/yogurt", "Pears and apples with skin", "Warm lemon water upon waking", "Lentils and beans"],
+    foodsToAvoid: ["Excess white refined flour", "Over-processed cheeses", "Unripe bananas", "Caffeinated dehydration"],
+    clinicalTip: "Gradually increase dietary fiber to 30g/day while drinking 10 glasses of water. Fiber without water worsens constipation!",
+  },
+  {
+    symptom: "Fatigue & Low Iron (Anemia)",
+    emoji: "💤",
+    recommendedFoods: ["Lean grass-fed beef or poultry", "Cooked lentils and black beans", "Spinach sautéed with garlic and lemon", "Pumpkin seeds", "Dried apricots"],
+    foodsToAvoid: ["Coffee, black tea, or milk immediately with meals (tannins and calcium block non-heme iron absorption)"],
+    clinicalTip: "Always pair plant iron (greens/beans) with Vitamin C (citrus, tomatoes, bell peppers) to boost absorption by up to 300%.",
+  },
+  {
+    symptom: "Gestational Diabetes Prevention",
+    emoji: "🩸",
+    recommendedFoods: ["Non-starchy vegetables (broccoli, cauliflower, zucchini)", "Quality proteins (eggs, chicken, fish, tofu)", "Complex high-fiber carbs (quinoa, oats)", "Healthy fats (avocado, olive oil, walnuts)"],
+    foodsToAvoid: ["Fruit juices & soda", "Refined white bread & pastries", "Sugary breakfast cereals", "Syrups & candy"],
+    clinicalTip: "Never eat 'naked carbohydrates'—always pair carbs with protein or healthy fat to blunt glucose spikes.",
+  },
+];
+
+export const KEY_MICRONUTRIENTS = [
+  {
+    name: "Folic Acid / Folate",
+    dailyTarget: "600 - 800 mcg",
+    role: "Prevents Neural Tube Defects (NTDs) like spina bifida and supports cell division.",
+    sources: "Dark leafy greens, lentils, fortified grains, citrus, prenatal vitamins.",
+  },
+  {
+    name: "Iron",
+    dailyTarget: "27 mg",
+    role: "Builds hemoglobin to deliver oxygen to baby and support maternal blood volume expansion.",
+    sources: "Lean meats, lentils, spinach, pumpkin seeds, blackstrap molasses.",
+  },
+  {
+    name: "Calcium",
+    dailyTarget: "1,000 mg",
+    role: "Builds baby's bones and teeth; protects mother's bone mineral density.",
+    sources: "Greek yogurt, milk, pasteurized cheeses, fortified plant milk, chia seeds, tofu.",
+  },
+  {
+    name: "DHA Omega-3",
+    dailyTarget: "200 - 300 mg",
+    role: "Essential building block for baby's brain, retina, and nervous system development.",
+    sources: "Wild salmon, sardines, algae oil supplements, omega-3 eggs.",
+  },
+  {
+    name: "Choline",
+    dailyTarget: "450 mg",
+    role: "Crucial for fetal brain development, memory function, and placental health.",
+    sources: "Egg yolks (2 eggs provide ~300mg), chicken breast, soybeans, broccoli.",
+  },
+  {
+    name: "Vitamin D3",
+    dailyTarget: "600 - 2,000 IU",
+    role: "Promotes calcium absorption, immune system balance, and healthy pregnancy outcomes.",
+    sources: "Safe sun exposure, fortified milk, salmon, egg yolks, prenatal supplements.",
+  },
+];
